@@ -1,7 +1,7 @@
 import { drawBall } from "./draw.js";
 
 export default class Ball {
-  constructor(x=0, y=0, size=10, color="#0095DD") {
+  constructor(x=0, y=0, size=10, color="#880000") {
     this.x = x;
     this.y = y;
     this.size = size;
