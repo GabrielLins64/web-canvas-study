@@ -16,4 +16,8 @@ function drawBall(ctx, centerX=0, centerY=0, radius=10, color="#000") {
   ctx.closePath();
 }
 
-export { drawRect, drawBall }
+const clearCanvas = (canvas, ctx) => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+export { drawRect, drawBall, clearCanvas }
