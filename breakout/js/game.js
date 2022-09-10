@@ -15,10 +15,10 @@ function gameLoop() {
   clearCanvas();
   detectWallCollision(canvas, ball);
   detectBallPaddleCollision(ball, paddle);
+  ball.move();
+
   paddle.draw(ctx);
   ball.draw(ctx);
-  ball.x += ball.dx;
-  ball.y += ball.dy;
 }
 
 setInterval(gameLoop, 10);
