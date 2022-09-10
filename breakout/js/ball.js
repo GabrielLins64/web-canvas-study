@@ -10,6 +10,11 @@ export default class Ball {
     this.dy = -2;
   }
 
+  move() {
+    this.x += this.dx;
+    this.y += this.dy;
+  }
+
   draw(ctx) {
     drawBall(ctx, this.x, this.y, this.size, this.color);
   }
