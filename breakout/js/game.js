@@ -1,6 +1,6 @@
 import Ball from "./ball.js";
 import BrickWall from "./brick.js";
-import { clearCanvas } from "./draw.js";
+import { clearCanvas, drawScore } from "./draw.js";
 import { KeyControls } from "./io.js";
 import Paddle from "./paddle.js";
 import { detectBallBricksCollision, detectBallPaddleCollision, detectWallCollision } from "./physics.js";
@@ -13,6 +13,7 @@ const bricks = new BrickWall(canvas);
 const ball = new Ball(canvas.width / 2, canvas.height - 30);
 const paddle = new Paddle((canvas.width - 75) / 2, canvas.height - 20)
 const controls = new KeyControls(paddle);
+var score = [0];
 
 
 function checkGameOver() {
@@ -27,21 +28,32 @@ function checkGameOver() {
   }
 }
 
+function checkWin() {
+  // Check win
+  if (score[0] === bricks.getBricks().length * bricks.getBricks()[0].length) {
+    alert("You WIN! Congrats!");
+    document.location.reload();
+    clearInterval(interval)
+  }
+}
+
 
 function gameLoop() {
   clearCanvas(canvas, ctx);
-
+  
   detectWallCollision(canvas, ball, paddle);
   detectBallPaddleCollision(ball, paddle);
-  detectBallBricksCollision(ball, bricks.getBricks());
-
+  detectBallBricksCollision(ball, bricks.getBricks(), score);
+  
   ball.move();
   paddle.move();
-
+  
   paddle.draw(ctx);
   ball.draw(ctx);
   bricks.draw(ctx);
+  drawScore(ctx, score);
 
+  checkWin();
   checkGameOver();
 }
 

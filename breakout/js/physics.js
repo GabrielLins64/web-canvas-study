@@ -15,13 +15,14 @@ function detectBallPaddleCollision(ball, paddle) {
     ball.dy = -Math.abs(ball.dy);
 }
 
-function detectBallBricksCollision(ball, bricks) {
+function detectBallBricksCollision(ball, bricks, score) {
   for (let r = 0; r < bricks.length; r++) {
     for (let c = 0; c < bricks[r].length; c++) {
       const { x, y, width, height, status } = bricks[r][c];
       if (status && ball.x > x && ball.x < x + width && ball.y > y && ball.y < y + height) {
         ball.dy = -ball.dy;
         bricks[r][c].status = 0;
+        score[0]++;
       }
     }
   }
